@@ -32,7 +32,7 @@ from matplotlib import cm
 
 st.set_page_config(page_title = "Basic Fake News Detector")
 
-ts = 0.8  #training size
+
 rs = 7 #random state to shuffle the news. One should average over these
 
 
@@ -152,6 +152,11 @@ st.markdown("We exploit the following classifiers: [Passive Aggressive Classifie
 
 st.markdown("### Choose a classifier:") 
 classifier = st.radio("", ('PAC-I','PAC-II','LSVC','SGDC'))     
+
+
+st.markdown("### Select the training size %:") 
+number = st.slider("", 1, 99)
+ts=number/100
 st.markdown("### Enter the text of a news article written in English or Russian language")
     
 text = st.text_area("Text:", height=500)
