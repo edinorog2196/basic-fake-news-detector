@@ -1,32 +1,25 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 import pickle
-
+import io
 
 import pandas as pd   #data storage
+import numpy as np
 
-
-#Useful functions
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, confusion_matrix
-
-#Preprocessors
-from sklearn.feature_extraction.text import TfidfVectorizer
+#RUN:
+#python3 model_generation.py [first to generate the models]
+#streamlit run app.py [to launch the app]
 #try also the more complex spacy
 
 #Link for a full list of classifiers in sklearn
 #https://scikit-learn.org/stable/search.html?q=classifier
 
 #DIFFERENT CLASSIFIERS
-from sklearn.linear_model import PassiveAggressiveClassifier, SGDClassifier 
-from sklearn.svm import LinearSVC
 
 
 from spacy.lang.en.stop_words import STOP_WORDS
 from wordcloud import WordCloud
-import io
-import time
-from matplotlib import pyplot as plt
+
+import matplotlib.pyplot as plt
 from matplotlib import cm
 
 
@@ -36,11 +29,9 @@ st.set_page_config(page_title = "Basic Fake News Detector")
 
 
 
-def training(tfidf_vectorizer,classifier):
+def training(classifier):
     #The model
-    start = time.time()
   
-    #Initialize a PassiveAggressiveClassifier
     
     if classifier == "PAC-I" :
         pac=pickle.load(open('model1','rb'))
@@ -59,7 +50,7 @@ def generate_output(text,classifier):
     #we need to check the impact of max_df
     tfidf_vectorizer = pickle.load(open('tfidf1','rb'))
     text = text.replace(',', '')
-    pac=training(tfidf_vectorizer,classifier)
+    pac=training(classifier)
     data = io.StringIO(text)
     df_text = pd.read_csv(data)
 
@@ -90,14 +81,22 @@ desc = "#### This web app detects fake news written in English or Russian langua
         
 st.markdown("# :mag: Basic Fake News Detector :mag_right:")
 st.markdown(desc)
-
+accuracy_PAC_I,accuracy_PAC_II,accuracy_LSVC,accuracy_SGDC =\
+    np.genfromtxt("accuracies.txt",dtype="float", comments="#", usecols=(0,1,2,3), unpack=True)
 st.markdown("This app was developed with the [Streamlit](https://streamlit.io) library.")
-st.markdown("We exploit the following classifiers: [Passive Aggressive Classifier]\
+st.markdown("We exploit the following classifiers:")
+st.markdown(":red_circle: [Passive Aggressive Classifier I]\
     (https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PassiveAggressiveClassifier.html)\
-    (with hinge and squared hinge loss function which achieved 98.04% and 98.03% accuracy on the testset respectively)\
-    or the [Linear Support Vector Machine Classifier] which achieved 98.20% accuracy on the testset\
-(https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html)\
-    or the [SGDC Classifier] which achieved 96.64% accuracy on the testset.(https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html)")
+        with hinge loss function (%.2f%% accuracy)" % accuracy_PAC_I)    
+st.markdown(":red_circle: [Passive Aggressive Classifier II]\
+    (https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PassiveAggressiveClassifier.html)\
+        with squared hinge loss function (%.2f%% accuracy)" % accuracy_PAC_II) 
+st.markdown(":red_circle: [Linear Support Vector Machine Classifier]\
+    (https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html)\
+    (%.2f%% accuracy)" % accuracy_LSVC) 
+st.markdown(":red_circle: [Stochasic Gradient Descent Classifier]\
+    (https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html)\
+    (%.2f%% accuracy)" % accuracy_SGDC) 
 
 
 st.markdown("### Choose a classifier:") 

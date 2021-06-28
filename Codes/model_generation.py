@@ -23,7 +23,7 @@ import time
 
 
 
-ts = 0.8  #training size
+ts = 0.9  #training size
 rs = 7 #random state to shuffle the news. One should average over these
 
 
@@ -71,12 +71,12 @@ pac1.fit(tfidf_train,y_train)
 
 y_pred=pac1.predict(tfidf_test)
 score=accuracy_score(y_test,y_pred)
-accuracy= score*100.
+accuracy_pac1= score*100.
 
 
 pickle.dump(pac1,open('model1','wb'))
 pickle.dump(tfidf_vectorizer,open('tfidf1','wb')) #only need to dump this once
-print('Accuracy pac1 :', accuracy)
+print('Accuracy pac1 :', accuracy_pac1)
 
 
 #Initialize  PassiveAggressiveClassifier with squared hinge loss function
@@ -87,10 +87,10 @@ pac2.fit(tfidf_train,y_train)
 
 y_pred=pac2.predict(tfidf_test)
 score=accuracy_score(y_test,y_pred)
-accuracy= score*100.
+accuracy_pac2= score*100.
 
 pickle.dump(pac2,open('model2','wb'))
-print('Accuracy pac2 :', accuracy)
+print('Accuracy pac2 :', accuracy_pac2)
 
 
 #Initialize a linear Support Vector Machine
@@ -101,10 +101,10 @@ lsvm.fit(tfidf_train,y_train)
 
 y_pred=lsvm.predict(tfidf_test)
 score=accuracy_score(y_test,y_pred)
-accuracy= score*100.
+accuracy_lsvm= score*100.
 
 pickle.dump(lsvm,open('model3','wb'))
-print('Accuracy lsvm :', accuracy)
+print('Accuracy lsvm :', accuracy_lsvm)
 
 
 
@@ -116,7 +116,16 @@ sgd.fit(tfidf_train,y_train)
 
 y_pred=sgd.predict(tfidf_test)
 score=accuracy_score(y_test,y_pred)
-accuracy= score*100.
+accuracy_sgd= score*100.
 
 pickle.dump(sgd,open('model4','wb'))
-print('Accuracy sgd :', accuracy)
+print('Accuracy sgd :', accuracy_sgd)
+
+
+#Save accuracies
+fname="accuracies.txt"  
+f=open(fname,"w") 
+#the new file will be for writing (w)
+f.write("# PAC-I PAC-II LSVC SGDC \n")
+f.write(str(accuracy_pac1)+" "+str(accuracy_pac2)+" "+ \
+       str(accuracy_lsvm)+" "+str(accuracy_sgd)+"\n")
