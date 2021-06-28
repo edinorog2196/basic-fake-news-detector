@@ -94,7 +94,7 @@ st.markdown(":red_circle: [Passive Aggressive Classifier II]\
 st.markdown(":red_circle: [Linear Support Vector Machine Classifier]\
     (https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html)\
     (%.2f%% accuracy)" % accuracy_LSVC) 
-st.markdown(":red_circle: [Stochasic Gradient Descent Classifier]\
+st.markdown(":red_circle: [Stochastic Gradient Descent Classifier]\
     (https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html)\
     (%.2f%% accuracy)" % accuracy_SGDC) 
 
