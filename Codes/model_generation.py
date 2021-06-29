@@ -76,6 +76,7 @@ accuracy_pac1= score*100.
 
 pickle.dump(pac1,open('model1','wb'))
 pickle.dump(tfidf_vectorizer,open('tfidf1','wb')) #only need to dump this once
+pickle.dump(accuracy_pac1,open('accuracy1','wb'))
 print('Accuracy pac1 :', accuracy_pac1)
 
 
@@ -90,6 +91,7 @@ score=accuracy_score(y_test,y_pred)
 accuracy_pac2= score*100.
 
 pickle.dump(pac2,open('model2','wb'))
+pickle.dump(accuracy_pac2,open('accuracy2','wb'))
 print('Accuracy pac2 :', accuracy_pac2)
 
 
@@ -104,6 +106,7 @@ score=accuracy_score(y_test,y_pred)
 accuracy_lsvm= score*100.
 
 pickle.dump(lsvm,open('model3','wb'))
+pickle.dump(accuracy_lsvm,open('accuracy3','wb'))
 print('Accuracy lsvm :', accuracy_lsvm)
 
 
@@ -119,13 +122,7 @@ score=accuracy_score(y_test,y_pred)
 accuracy_sgd= score*100.
 
 pickle.dump(sgd,open('model4','wb'))
+pickle.dump(accuracy_sgd,open('accuracy4','wb'))
 print('Accuracy sgd :', accuracy_sgd)
 
 
-#Save accuracies
-fname="accuracies.txt"  
-f=open(fname,"w") 
-#the new file will be for writing (w)
-f.write("# PAC-I PAC-II LSVC SGDC \n")
-f.write(str(accuracy_pac1)+" "+str(accuracy_pac2)+" "+ \
-       str(accuracy_lsvm)+" "+str(accuracy_sgd)+"\n")
