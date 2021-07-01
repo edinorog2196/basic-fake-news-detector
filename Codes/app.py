@@ -40,7 +40,27 @@ THEMES = [
     "blue",
 ]
 GITHUB_OWNER = "streamlit"
+
+# Show thumbnails for available themes.
+# As html img tags here, so we can add links on them.
+cols = st.beta_columns(len(THEMES))
+for col, theme in zip(cols, THEMES):
+
+    # Get repo name for this theme (to link to correct deployed app)-
+    if theme == "light":
+        repo = "theming-showcase"
+    else:
+        repo = f"theming-showcase-{theme}"
+
+    # Set border of current theme to red, otherwise black or white
+    if theme == CURRENT_THEME:
+        border_color = "red"
+    else:
+        border_color = "lightgrey" if IS_DARK_THEME else "black"
+
+     
  
+
 
 
 st.set_page_config(page_title = "Basic Fake News Detector")
