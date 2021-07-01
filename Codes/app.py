@@ -21,31 +21,8 @@ from matplotlib import cm
 # This code is different for each deployed app.
 CURRENT_THEME = "dark"
 IS_DARK_THEME = True
-EXPANDER_TEXT = """
-    This is a custom theme. You can enable it by copying the following code
-    to `.streamlit/config.toml`:
-    ```python
-    [theme]
-    primaryColor = "#E694FF"
-    backgroundColor = "#00172B"
-    secondaryBackgroundColor = "#0083B8"
-    textColor = "#C6CDD4"
-    font = "sans-serif"
-    ```
-    """
-THEMES = [ "dark" ]
-GITHUB_OWNER = "streamlit"
+ 
 
-# Show thumbnails for available themes.
-# As html img tags here, so we can add links on them.
-cols = st.beta_columns(len(THEMES))
-for col, theme in zip(cols, THEMES):
-
-    # Get repo name for this theme (to link to correct deployed app)-
-    if theme == "light":
-        repo = "theming-showcase"
-    else:
-        repo = f"theming-showcase-{theme}"
 
  
      
