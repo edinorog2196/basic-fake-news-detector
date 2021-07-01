@@ -12,7 +12,7 @@ import pandas as pd   #data storage
 #Link for a full list of classifiers in sklearn
 #https://scikit-learn.org/stable/search.html?q=classifier
 
-from spacy.lang.el.stop_words import STOP_WORDS
+from spacy.lang.en.stop_words import STOP_WORDS
 from wordcloud import WordCloud
 
 import matplotlib.pyplot as plt
