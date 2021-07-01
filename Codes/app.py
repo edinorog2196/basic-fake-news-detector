@@ -14,9 +14,7 @@ import numpy as np
 #https://scikit-learn.org/stable/search.html?q=classifier
 
 #DIFFERENT CLASSIFIERS
-
-import spacy
-from spacy.lang.en.stop_words import STOP_WORDS
+import sklearn.feature_extraction._stop_words as sw
 from wordcloud import WordCloud
 
 import matplotlib.pyplot as plt
@@ -25,7 +23,7 @@ from matplotlib import cm
 
 
 st.set_page_config(page_title = "Basic Fake News Detector")
-
+STOP_WORDS=sw.ENGLISH_STOP_WORDS
 
 
 
@@ -77,7 +75,7 @@ def generate_output(text,classifier):
     st.pyplot(fig)
 
 
-desc = "#### This web app detects fake news written in English or Russian language."
+desc = "#### This web app detects fake news written in English language."
         
 st.markdown("# :mag: Basic Fake News Detector :mag_right:")
 st.markdown(desc)
@@ -104,7 +102,7 @@ st.markdown(":red_circle: [Stochastic Gradient Descent Classifier]\
 
 st.markdown("### Choose a classifier:") 
 classifier = st.radio("", ('PAC-I','PAC-II','LSVC','SGDC'))     
-st.markdown("### Enter the text of a news article written in English or Russian language")
+st.markdown("### Enter the text of a news article written in English language")
     
 text = st.text_area("Text:", height=500)
 if st.button("Run"):
