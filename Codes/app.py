@@ -12,7 +12,7 @@ import pandas as pd   #data storage
 #Link for a full list of classifiers in sklearn
 #https://scikit-learn.org/stable/search.html?q=classifier
 
-#DIFFERENT CLASSIFIERS
+from spacy.lang.el.stop_words import STOP_WORDS
 from wordcloud import WordCloud
 
 import matplotlib.pyplot as plt
@@ -21,38 +21,6 @@ from matplotlib import cm
 
 
 st.set_page_config(page_title = "Basic Fake News Detector")
-STOP_WORDS= frozenset({'may', 'whereupon', 'describe', 'top', 'however', 'amount',\
-    'along', 'my', 'perhaps', 'couldnt', 'every', 'call', 'had', 'twelve', 'whom',\
-    'are', 'against', 'after', 'why', 'wherever', 'it', 'below', 'also', 'within', 'over', 'though', 'who',\
-    'even', 'whereas', 'by', 'alone', 'thereby', 'became', 'find', 'ltd', 'too', 'nobody', 'anyhow',\
-    'yourself', 'those', 'interest', 'mostly', 'never', 'more', 'there', 'seems', 'not', 'on', \
-    'nine', 'still', 'than', 'do', 'some', 'again', 'nothing', 'must', 'have', 'otherwise',\
-    'or', 'above', 'another', 'same', 'detail', 'they', 'eleven', 'has', 'down',\
-    'therein', 'hundred', 'others', 'yet', 'while', 'noone', 'anywhere', 'him', 'himself', 'always',\
-    'someone', 'whoever', 'until', 'wherein', 'de', 'the', 'once', 'latterly', 'yours', 'due',\
-    'sometime', 'your', 'four', 'therefore', 'hereby', 'whereafter', 'everything', 'third', 'hasnt', 'get',\
-    'their', 'latter', 'he', 'for', 'although', 'should', 'these', 'thick', 'something', 'because', 'no', 'rather', 'cry', 'becomes',\
-    'so', 'yourselves', 'enough', 'per', 'less', 'either', 'full', 'mill', 'bill', 'her', 'becoming', 'and', 'i', \
-    're', 'neither', 'were', 'his', 'off', 'else', 'amoungst', 'side', 'whenever', 'bottom', 'beside', 'will', \
-    'throughout', 'last', 'up', 'about', 'via', 'being', 'except', 'none', 'back', 'seeming', 'whither',\
-    'through', 'where', 'almost', 'since', 'into', 'please', 'all', 'am',\
-    'nevertheless', 'become', 'between', 'amongst', 'system', 'out', 'everywhere',\
-    'us', 'anyway', 'seemed', 'next', 'somewhere', 'only', 'ourselves', 'when', 'an', 'somehow', 'whatever', \
-    'of', 'afterwards', 'ten', 'this', 'six', 'any', 'hereupon', 'cant', 'go', 'is', 'me', 'thus',\
-    'part', 'most', 'take', 'together', 'whether', 'but', 'own', 'behind', 'other', 'everyone',\
-    'one', 'which', 'thereupon', 'formerly', 'mine', 'three', 'see', 'whole', 'to', 'seem', \
-    'keep', 'sometimes', 'two', 'herein', 'move', 'few', 'themselves', 'ie', 'sixty',\
-    'ours', 'hers', 'then', 'thin', 'across', 'at', 'been', 'name', 'front',\
-    'give', 'fifteen', 'fire', 'was', 'among', 'moreover', 'done', 'con',\
-    'both', 'found', 'cannot', 'here', 'around', 'can', 'fill',\
-    'that', 'indeed', 'she', 'etc', 'from', 'would', 'well',\
-    'former', 'five', 'itself', 'least', 'onto', 'very', 'empty', 'how', 'in', 'inc', 'already',\
-    'nowhere', 'much', 'myself', 'now', 'show', 'towards', 'thereafter', 'anyone', 'un', 'eight', \
-    'without', 'whose', 'our', 'eg', 'toward', 'we', 'nor', 'beyond', 'under', 'them', 'each',\
-    'further', 'could', 'put', 'be', 'fifty', 'thence', 'during', 'forty', 'if', 'might', \
-    'such', 'its', 'as', 'made', 'namely', 'whence', 'beforehand', 'meanwhile', 'sincere',\
-    'elsewhere', 'thru', 'hence', 'hereafter', 'ever', 'twenty', 'several', 'serious', 'whereby',\
-    'herself', 'before', 'co', 'upon', 'anything', 'besides', 'what', 'a', 'first', 'you', 'often', 'with', 'many'})
 
 
 def training(classifier):
