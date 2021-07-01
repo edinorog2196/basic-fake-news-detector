@@ -18,16 +18,8 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
-# This code is different for each deployed app.
-CURRENT_THEME = "dark"
-IS_DARK_THEME = True
  
-
-
  
-     
-
-
 
 st.set_page_config(page_title = "Basic Fake News Detector")
 
