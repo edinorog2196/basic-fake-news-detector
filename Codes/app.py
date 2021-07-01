@@ -3,7 +3,6 @@ import pickle
 import io
 
 import pandas as pd   #data storage
-import numpy as np
 
 #RUN:
 #python3 model_generation.py [first to generate the models]
@@ -14,7 +13,6 @@ import numpy as np
 #https://scikit-learn.org/stable/search.html?q=classifier
 
 #DIFFERENT CLASSIFIERS
-import sklearn.feature_extraction._stop_words as sw
 from wordcloud import WordCloud
 
 import matplotlib.pyplot as plt
