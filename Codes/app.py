@@ -72,7 +72,7 @@ def generate_output(text,classifier):
     st.pyplot(fig)
 
 
-desc = "#### This web app detects fake news written in English language."
+desc = "#### This web app detects fake news written in English or Russian language."
         
 st.markdown("# :mag: Basic Fake News Detector :mag_right:")
 st.markdown(desc)
@@ -99,7 +99,7 @@ st.markdown(":red_circle: [Stochastic Gradient Descent Classifier]\
 
 st.markdown("### Choose a classifier:") 
 classifier = st.radio("", ('PAC-I','PAC-II','LSVC','SGDC'))     
-st.markdown("### Enter the text of a news article written in English language")
+st.markdown("### Enter the text of a news article written in English or Russian language")
     
 text = st.text_area("Text:", height=500)
 if st.button("Run"):
