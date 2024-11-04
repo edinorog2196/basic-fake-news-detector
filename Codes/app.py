@@ -29,13 +29,13 @@ def training(classifier):
   
     
     if classifier == "PAC-I" :
-        pac=pickle.load(open('./model1','rb'))
+        pac=pickle.load(open('Codes/model1','rb'))
     elif classifier == "PAC-II" :
-        pac=pickle.load(open('./model2','rb'))
+        pac=pickle.load(open('Codes/model2','rb'))
     elif classifier == "LSVC":
-        pac=pickle.load(open('./model3','rb'))
+        pac=pickle.load(open('Codes/model3','rb'))
     elif classifier == "SGDC":
-        pac=pickle.load(open('./model4','rb'))   
+        pac=pickle.load(open('Codes/model4','rb'))   
 
     return pac
   
@@ -43,7 +43,7 @@ def generate_output(text,classifier):
     
     #Initialize a TfidfVectorizer
     #we need to check the impact of max_df
-    tfidf_vectorizer = pickle.load(open('./tfidf1','rb'))
+    tfidf_vectorizer = pickle.load(open('Codes/tfidf1','rb'))
     text = text.replace(',', '')
     pac=training(classifier)
     data = io.StringIO(text)
