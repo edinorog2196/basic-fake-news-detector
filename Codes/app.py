@@ -29,13 +29,13 @@ def training(classifier):
   
     
     if classifier == "PAC-I" :
-        pac=pickle.load(open('/app/basic-fake-news-detector/Codes/model1','rb'))
+        pac=pickle.load(open('./model1','rb'))
     elif classifier == "PAC-II" :
-        pac=pickle.load(open('/app/basic-fake-news-detector/Codes/model2','rb'))
+        pac=pickle.load(open('./model2','rb'))
     elif classifier == "LSVC":
-        pac=pickle.load(open('/app/basic-fake-news-detector/Codes/model3','rb'))
+        pac=pickle.load(open('./model3','rb'))
     elif classifier == "SGDC":
-        pac=pickle.load(open('/app/basic-fake-news-detector/Codes/model4','rb'))   
+        pac=pickle.load(open('./model4','rb'))   
 
     return pac
   
@@ -43,7 +43,7 @@ def generate_output(text,classifier):
     
     #Initialize a TfidfVectorizer
     #we need to check the impact of max_df
-    tfidf_vectorizer = pickle.load(open('/app/basic-fake-news-detector/Codes/tfidf1','rb'))
+    tfidf_vectorizer = pickle.load(open('./tfidf1','rb'))
     text = text.replace(',', '')
     pac=training(classifier)
     data = io.StringIO(text)
@@ -77,10 +77,10 @@ desc = "#### This web app detects fake news written in English language."
 st.markdown("# :mag: Basic Fake News Detector :mag_right:")
 st.markdown(desc)
 
-accuracy_PAC_I=pickle.load(open('/app/basic-fake-news-detector/Codes/accuracy1','rb'))
-accuracy_PAC_II=pickle.load(open('/app/basic-fake-news-detector/Codes/accuracy2','rb'))
-accuracy_LSVC=pickle.load(open('/app/basic-fake-news-detector/Codes/accuracy3','rb'))
-accuracy_SGDC=pickle.load(open('/app/basic-fake-news-detector/Codes/accuracy4','rb'))
+accuracy_PAC_I=pickle.load(open('./accuracy1','rb'))
+accuracy_PAC_II=pickle.load(open('./accuracy2','rb'))
+accuracy_LSVC=pickle.load(open('./accuracy3','rb'))
+accuracy_SGDC=pickle.load(open('./accuracy4','rb'))
 st.markdown("This app was developed with the [Streamlit](https://streamlit.io) library.")
 st.markdown("We exploit the following classifiers:")
 st.markdown(":red_circle: [Passive Aggressive Classifier I]\
