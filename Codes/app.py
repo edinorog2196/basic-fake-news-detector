@@ -77,10 +77,10 @@ desc = "#### This web app detects fake news written in English language."
 st.markdown("# :mag: Basic Fake News Detector :mag_right:")
 st.markdown(desc)
 
-accuracy_PAC_I=pickle.load(open('/app/basic-fake-news-detector/Codes/accuracy1','rb'))
-accuracy_PAC_II=pickle.load(open('/app/basic-fake-news-detector/Codes/accuracy2','rb'))
-accuracy_LSVC=pickle.load(open('/app/basic-fake-news-detector/Codes/accuracy3','rb'))
-accuracy_SGDC=pickle.load(open('/app/basic-fake-news-detector/Codes/accuracy4','rb'))
+accuracy_PAC_I=pickle.load(open('Codes/accuracy1','rb'))
+accuracy_PAC_II=pickle.load(open('Codes/accuracy2','rb'))
+accuracy_LSVC=pickle.load(open('Codes/accuracy3','rb'))
+accuracy_SGDC=pickle.load(open('Codes/accuracy4','rb'))
 st.markdown("This app was developed with the [Streamlit](https://streamlit.io) library.")
 st.markdown("We exploit the following classifiers:")
 st.markdown(":red_circle: [Passive Aggressive Classifier I]\
